@@ -72,10 +72,21 @@ $195	Dominique		$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $36 FRC 217 Thund
 
 var pickem = [];
 
+var draft = [['Popped Cargo', ['195', '217','225','1241','1720','1730','3478']],
+			 ['TBC', ['319','330','1073','3538','5460']],
+			 ['QD', ['910','930','1410','2337','2481','3707']],
+			 ['ROBOTICS', ['48','51','107','2910','5801','6443','7457','7498']],
+			 ['The Brian Griffins', ['111','1024','2056','2168','2614','4028']],
+			 ['Cup Of Joe', ['234','364','868','1676','3357','4362','5406','5511']],
+			 ['Just OK Robotics', ['548','1718','1923','2075','3357','3604','4607','4776','5205']],
+			 ['TLC', ['33','340','1684','2767','3847','4265']],
+			 ['The Maple Alliance', ['88','1114','1690','2468','3641']],
+			 ['Squad Behind The Glass', ['118','461','1023','1747','1807','2403','3940','5190']]];
+
 $(document).ready(function(){
 	$('button#go').click(update)
-	raw_teams.split('\n').forEach(function(row){
-		var elements = row.split('\t');
+	raw_teams.split('\n').forEach(function(line){
+		var elements = line.split('\t');
 		if(parseInt(elements[0].substring(2))>200) return;
 		var name = elements[2];
 		if(name==='') name = elements[1];
@@ -88,8 +99,14 @@ $(document).ready(function(){
 		row.insertCell(0).innerHTML = name;
 		row.insertCell(1).innerHTML = picks.join(', ');
 		row.insertCell(2);
-		$('tbody td').css('text-align', 'left');
 	});
+	draft.forEach(function(line){
+		var row = $('table#draft tbody')[0].insertRow(-1);
+		row.insertCell(0).innerHTML = line[0];
+		row.insertCell(1).innerHTML = line[1].join(', ');
+		row.insertCell(2);
+	})
+	$('tbody td').css('text-align', 'left');
 	$('button#go').click();
 });
 
@@ -101,6 +118,7 @@ function update(){
 	request.onload = function(){
 		try{
 			var data = JSON.parse(this.response);
+			
 			var scores = pickem.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
 			pickem2 = zip([pickem, scores]).sort(x => x[1]);
 			$('table#pickem tbody').html('');
@@ -110,6 +128,17 @@ function update(){
 				row.insertCell(1).innerHTML = val[0][1];
 				row.insertCell(2).innerHTML = val[1];
 			});
+
+			scores = draft.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
+			draft2 = zip([draft, scores]).sort(x => x[1]);
+			$('table#draft tbody').html('');
+			draft2.forEach(function(val){
+				var row = $('table#draft tbody')[0].insertRow(-1);
+				row.insertCell(0).innerHTML = val[0][0];
+				row.insertCell(1).innerHTML = val[0][1];
+				row.insertCell(2).innerHTML = val[1];
+			});
+
 			$('div#last-updated').html('Last updated ' + new Date().toLocaleTimeString());
 		}catch(err){
 			$('div#last-updated').html('Error loading event status.');
