@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pick'Em League Live</title>
+	<script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+	<script type="text/javascript" src='update.js'></script>
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body align='center'>
+	<div id='header'>
+		<br>
+		<div id='last-updated'></div>
+		<button id='go' class='pure-button'>REFRESH</button>
+	</div>
+	<br>
+	<div id='tables'>
+		<h2>Live Draft Teams</h2>
+		<table id='draft' class='pure-table' align='center'>
+			<thead>
+				<tr>
+					<td>Team Name</td>
+					<td>Pick List</td>
+					<td>Score</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<br>
+		<h2>Pick'Em League Teams</h2>
+		<table id='pickem' class='pure-table' align='center'>
+			<thead>
+				<tr>
+					<td>Team Name</td>
+					<td>Pick List</td>
+					<td>Score</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+</body>
+</html>
