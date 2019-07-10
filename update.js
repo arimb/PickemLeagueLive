@@ -99,17 +99,24 @@ function update(){
 	request.setRequestHeader('X-TBA-Auth-Key', 'h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv');
 	request.setRequestHeader('accept', 'application/json');
 	request.onload = function(){
-		var data = JSON.parse(this.response);
-		var scores = pickem.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
-		pickem2 = zip([pickem, scores]).sort(x => x[1]);
-		$('table#pickem tbody').html('');
-		pickem2.forEach(function(val){
-			var row = $('table#pickem tbody')[0].insertRow(-1);
-			row.insertCell(0).innerHTML = val[0][0];
-			row.insertCell(1).innerHTML = val[0][1];
-			row.insertCell(2).innerHTML = val[1];
-		});
-		$('div#last-updated').html('Last updated ' + new Date().toLocaleTimeString());
+		try{
+			var data = JSON.parse(this.response);
+			var scores = pickem.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
+			pickem2 = zip([pickem, scores]).sort(x => x[1]);
+			$('table#pickem tbody').html('');
+			pickem2.forEach(function(val){
+				var row = $('table#pickem tbody')[0].insertRow(-1);
+				row.insertCell(0).innerHTML = val[0][0];
+				row.insertCell(1).innerHTML = val[0][1];
+				row.insertCell(2).innerHTML = val[1];
+			});
+			$('div#last-updated').html('Last updated ' + new Date().toLocaleTimeString());
+		}catch(err){
+			$('div#last-updated').html('Error loading event status.');
+		}
+	};
+	request.onerror = function(){
+		$('div#last-updated').html('Error loading event status.');
 	};
 	request.send();
 }
