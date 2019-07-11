@@ -65,10 +65,61 @@ $200	Joel	The winner	$30 FRC 118 Robonauts, $25 FRC 548 Robostangs, $27 FRC 1684
 $197	Heather	Popped Cargo2	$47 FRC 195 CyberKnights, $34 FRC 225 TechFire, $11 FRC 1024 Kil-A-Bytes, $17 FRC 1676 The Pascack Pi-oneers, $16 FRC 1720 PhyXTGears, $10 FRC 1730 Team Driven, $11 FRC 3478 LamBot, $19 FRC 3604 Goon Squad, $14 FRC 3940 CyberTooth, $18 FRC 7457 suPURDUEper Robotics
 $200	Ethan	CheesePuffs	$13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $28 FRC 319 Big Bad BOB, $37 FRC 2468 Team Appreciate, $38 FRC 2481 Roboteers, $28 FRC 3641 The Flying Toasters, $34 FRC 3707 Technodogs
 $195	Dominique		$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $36 FRC 217 ThunderChickens, $28 FRC 319 Big Bad BOB, $28 FRC 1807 Redbird Robotics, $34 FRC 3707 Technodogs
-	Brett		$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $36 FRC 930 Mukwonago BEARs, $37 FRC 2767 Stryke Force, $38 FRC 5406 Celt-X, $20 FRC 7498 Wingus & Dingus
-	Bernadette	Full Beans	$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $66 FRC 1114 Simbotics, $27 FRC 1684 The Chimeras, $37 FRC 2767 Stryke Force
-	Josiah	MikLast	$18 FRC 234 Cyber Blue, $24 FRC 1023 Bedford Express, $15 FRC 1073 The Force Team, $13 FRC 1410 The Kraken, $10 FRC 1730 Team Driven, $28 FRC 1807 Redbird Robotics, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs, $46 FRC 5460 Strike Zone
-	Ari		$13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $18 FRC 234 Cyber Blue, $28 FRC 319 Big Bad BOB, $24 FRC 1023 Bedford Express, $22 FRC 1718 The Fighting Pi, $10 FRC 1730 Team Driven, $19 FRC 1747 Harrison Boiler Robotics, $11 FRC 3478 LamBot`;
+$200	Brett		$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $36 FRC 930 Mukwonago BEARs, $37 FRC 2767 Stryke Force, $38 FRC 5406 Celt-X, $20 FRC 7498 Wingus & Dingus
+$199	Bernadette	Full Beans	$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $66 FRC 1114 Simbotics, $27 FRC 1684 The Chimeras, $37 FRC 2767 Stryke Force
+$199	Josiah	MikLast	$18 FRC 234 Cyber Blue, $24 FRC 1023 Bedford Express, $15 FRC 1073 The Force Team, $13 FRC 1410 The Kraken, $10 FRC 1730 Team Driven, $28 FRC 1807 Redbird Robotics, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs, $46 FRC 5460 Strike Zone
+$197	Ari		$13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $18 FRC 234 Cyber Blue, $28 FRC 319 Big Bad BOB, $24 FRC 1023 Bedford Express, $22 FRC 1718 The Fighting Pi, $10 FRC 1730 Team Driven, $19 FRC 1747 Harrison Boiler Robotics, $11 FRC 3478 LamBot
+$196	Connor	Surfs Up!	$47 FRC 195 CyberKnights, $11 FRC 1024 Kil-A-Bytes, $15 FRC 1073 The Force Team, $35 FRC 1241 Theory 6, $40 FRC 2168 The Aluminum Falcons, $37 FRC 2767 Stryke Force, $11 FRC 3478 LamBot
+$197	Connor	Surfs Downi	$13 FRC 48 Team E.L.I.T.E., $18 FRC 234 Cyber Blue, $17 FRC 461 Westside Boiler Invasion, $11 FRC 1024 Kil-A-Bytes, $15 FRC 1073 The Force Team, $13 FRC 1410 The Kraken, $17 FRC 1676 The Pascack Pi-oneers, $16 FRC 1720 PhyXTGears, $10 FRC 1730 Team Driven, $11 FRC 3478 LamBot, $14 FRC 3940 CyberTooth, $13 FRC 5205 Full Metal Jackets, $14 FRC 5511 Cortechs Robotics, $15 FRC 5801 CTC Inspire
+$198	Connor 	Surfs Left!	$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $76 FRC 2056 OP Robotics, $53 FRC 2910 Jack in the Bot
+$199	Connor	Surfs (u) Right!	$34 FRC 225 TechFire, $19 FRC 1923 The MidKnight Inventors, $37 FRC 2767 Stryke Force, $20 FRC 3357 The COMETS, $34 FRC 3707 Technodogs, $35 FRC 3847 Spectrum, $20 FRC 7498 Wingus & Dingus
+$200	Eric		$39 FRC 33 Killer Bees, $36 FRC 910 The Foley Freeze, $22 FRC 1718 The Fighting Pi, $20 FRC 3357 The COMETS, $55 FRC 3538 RoboJackets, $28 FRC 3641 The Flying Toasters
+$200	Kaitlyn		$13 FRC 48 Team E.L.I.T.E., $29 FRC 107 Team R.O.B.O.T.I.C.S., $22 FRC 111 WildStang, $28 FRC 319 Big Bad BOB, $10 FRC 1730 Team Driven, $25 FRC 2337 EngiNERDs, $53 FRC 2910 Jack in the Bot, $20 FRC 7498 Wingus & Dingus
+$198	Brent		$39 FRC 33 Killer Bees, $36 FRC 910 The Foley Freeze, $15 FRC 1073 The Force Team, $13 FRC 1410 The Kraken, $22 FRC 1718 The Fighting Pi, $38 FRC 2481 Roboteers, $35 FRC 3847 Spectrum
+$198	Nick	2Champz2Furious	$39 FRC 33 Killer Bees, $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $34 FRC 225 TechFire, $28 FRC 364 Team Fusion, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs
+$200	Nick	3Champz3Furious	$22 FRC 111 WildStang, $18 FRC 234 Cyber Blue, $28 FRC 364 Team Fusion, $17 FRC 1676 The Pascack Pi-oneers, $19 FRC 1747 Harrison Boiler Robotics, $19 FRC 2403 Plasma Robotics, $11 FRC 3478 LamBot, $19 FRC 3604 Goon Squad, $34 FRC 3707 Technodogs, $13 FRC 5205 Full Metal Jackets
+$199	Philip 		$30 FRC 118 Robonauts, $76 FRC 2056 OP Robotics, $40 FRC 2168 The Aluminum Falcons, $53 FRC 2910 Jack in the Bot
+$200	Maya		$39 FRC 33 Killer Bees, $13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $47 FRC 195 CyberKnights, $28 FRC 3641 The Flying Toasters, $13 FRC 5205 Full Metal Jackets, $38 FRC 5406 Celt-X
+$198	Elliott	Kokomo Korn	$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $47 FRC 195 CyberKnights, $11 FRC 1024 Kil-A-Bytes, $37 FRC 2767 Stryke Force, $34 FRC 3707 Technodogs
+$196	Aditya		$39 FRC 33 Killer Bees, $30 FRC 118 Robonauts, $47 FRC 195 CyberKnights, $28 FRC 364 Team Fusion, $15 FRC 1073 The Force Team, $37 FRC 2767 Stryke Force
+$58	Aditya		$47 FRC 195 CyberKnights, $11 FRC 3478 LamBot
+$199	Aditya		$39 FRC 33 Killer Bees, $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $28 FRC 364 Team Fusion, $37 FRC 2767 Stryke Force, $11 FRC 3478 LamBot, $32 FRC 5190 Green Hope Robotics
+$13	Garrett	FRC team 2062: CORE 2062 (2052 team)	$13 FRC 48 Team E.L.I.T.E.
+$198	Jonathan	Quality > Quantity	$66 FRC 1114 Simbotics, $22 FRC 1718 The Fighting Pi, $76 FRC 2056 OP Robotics, $34 FRC 3707 Technodogs
+$195	Peter		$24 FRC 88 TJ2, $28 FRC 364 Team Fusion, $15 FRC 1073 The Force Team, $35 FRC 1241 Theory 6, $22 FRC 1718 The Fighting Pi, $37 FRC 2767 Stryke Force, $34 FRC 3707 Technodogs
+$170	Nolan	Tidal Forc	$13 FRC 48 Team E.L.I.T.E., $15 FRC 1073 The Force Team, $66 FRC 1114 Simbotics, $76 FRC 2056 OP Robotics
+$200	Adham		$13 FRC 48 Team E.L.I.T.E., $17 FRC 461 Westside Boiler Invasion, $11 FRC 1024 Kil-A-Bytes, $15 FRC 1073 The Force Team, $13 FRC 1410 The Kraken, $17 FRC 1676 The Pascack Pi-oneers, $16 FRC 1720 PhyXTGears, $10 FRC 1730 Team Driven, $11 FRC 3478 LamBot, $14 FRC 3940 CyberTooth, $21 FRC 5010 Tiger Dynasty, $13 FRC 5205 Full Metal Jackets, $14 FRC 5511 Cortechs Robotics, $15 FRC 5801 CTC Inspire
+$191	Eric		$13 FRC 48 Team E.L.I.T.E., $18 FRC 51 The Wings of Fire, $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $13 FRC 1410 The Kraken, $53 FRC 2910 Jack in the Bot, $22 FRC 6443 AEMBOT, $20 FRC 7498 Wingus & Dingus
+$200	Tyler	???	$22 FRC 111 WildStang, $49 FRC 330 The Beach Bots, $36 FRC 930 Mukwonago BEARs, $15 FRC 1073 The Force Team, $20 FRC 4607 C.I.S., $20 FRC 4776 S.C.O.T.S. Bots, $18 FRC 7457 suPURDUEper Robotics, $20 FRC 7498 Wingus & Dingus
+$200	Noah	PraiseCoresetto	$13 FRC 48 Team E.L.I.T.E., $18 FRC 51 The Wings of Fire, $18 FRC 234 Cyber Blue, $17 FRC 461 Westside Boiler Invasion, $15 FRC 1073 The Force Team, $66 FRC 1114 Simbotics, $13 FRC 1410 The Kraken, $17 FRC 1676 The Pascack Pi-oneers, $10 FRC 1730 Team Driven, $13 FRC 5205 Full Metal Jackets
+$48	frcfan1	<3 48 <3	$13 FRC 48 Team E.L.I.T.E., $35 FRC 3847 Spectrum
+$122	Garrett	Big OOFYPOOFS	$39 FRC 33 Killer Bees, $13 FRC 48 Team E.L.I.T.E., $30 FRC 118 Robonauts, $22 FRC 1718 The Fighting Pi, $18 FRC 4265 Secret City Wildbots
+$200	Ravi	The Big Mistake	$34 FRC 225 TechFire, $28 FRC 319 Big Bad BOB, $15 FRC 1073 The Force Team, $17 FRC 1676 The Pascack Pi-oneers, $40 FRC 2168 The Aluminum Falcons, $34 FRC 3707 Technodogs, $32 FRC 5190 Green Hope Robotics
+$198	Spencer		$39 FRC 33 Killer Bees, $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $36 FRC 217 ThunderChickens, $34 FRC 225 TechFire, $37 FRC 2767 Stryke Force
+$197	Ari	Take Too	$39 FRC 33 Killer Bees, $13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $18 FRC 234 Cyber Blue, $17 FRC 1676 The Pascack Pi-oneers, $10 FRC 1730 Team Driven, $19 FRC 1747 Harrison Boiler Robotics, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs, $14 FRC 5511 Cortechs Robotics
+$200	Ari	Take 1 1/2	$13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $18 FRC 234 Cyber Blue, $13 FRC 1410 The Kraken, $17 FRC 1676 The Pascack Pi-oneers, $16 FRC 1720 PhyXTGears, $10 FRC 1730 Team Driven, $19 FRC 1747 Harrison Boiler Robotics, $19 FRC 2403 Plasma Robotics, $11 FRC 3478 LamBot, $13 FRC 5205 Full Metal Jackets, $14 FRC 5511 Cortechs Robotics, $15 FRC 5801 CTC Inspire
+$200	Taegen		$30 FRC 118 Robonauts, $76 FRC 2056 OP Robotics, $20 FRC 3357 The COMETS, $34 FRC 3707 Technodogs, $18 FRC 4028 the Beak Squad, $22 FRC 6443 AEMBOT
+$197	James	Yee	$18 FRC 234 Cyber Blue, $20 FRC 340 Greater Rochester Robotics, $28 FRC 364 Team Fusion, $24 FRC 1023 Bedford Express, $17 FRC 1676 The Pascack Pi-oneers, $16 FRC 1720 PhyXTGears, $10 FRC 1730 Team Driven, $19 FRC 2403 Plasma Robotics, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs
+$130	Richard		$25 FRC 548 Robostangs, $19 FRC 3604 Goon Squad, $40 FRC 4362 The Gems, $46 FRC 5460 Strike Zone
+$198	Dominick	The 1 Point Boiz	$30 FRC 118 Robonauts, $36 FRC 217 ThunderChickens, $36 FRC 930 Mukwonago BEARs, $66 FRC 1114 Simbotics, $10 FRC 1730 Team Driven, $20 FRC 7498 Wingus & Dingus
+	Akhil		$13 FRC 48 Team E.L.I.T.E., $18 FRC 51 The Wings of Fire, $28 FRC 364 Team Fusion, $11 FRC 1024 Kil-A-Bytes, $15 FRC 1073 The Force Team, $10 FRC 1730 Team Driven, $19 FRC 1747 Harrison Boiler Robotics, $19 FRC 2403 Plasma Robotics, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs, $22 FRC 6443 AEMBOT
+	Erik	TGA	$15 FRC 1073 The Force Team, $66 FRC 1114 Simbotics, $76 FRC 2056 OP Robotics, $34 FRC 3707 Technodogs
+	James	Uncreative Name 	$13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $28 FRC 319 Big Bad BOB, $28 FRC 364 Team Fusion, $15 FRC 1073 The Force Team, $17 FRC 1676 The Pascack Pi-oneers, $11 FRC 3478 LamBot, $18 FRC 4265 Secret City Wildbots, $18 FRC 7457 suPURDUEper Robotics
+	Darrell		$30 FRC 118 Robonauts, $28 FRC 319 Big Bad BOB, $20 FRC 340 Greater Rochester Robotics, $11 FRC 1024 Kil-A-Bytes, $27 FRC 1684 The Chimeras, $19 FRC 1747 Harrison Boiler Robotics, $19 FRC 1923 The MidKnight Inventors, $19 FRC 3604 Goon Squad, $18 FRC 4028 the Beak Squad
+	James	The Big Bois	$47 FRC 195 CyberKnights, $35 FRC 1241 Theory 6, $37 FRC 2767 Stryke Force, $32 FRC 5190 Green Hope Robotics, $46 FRC 5460 Strike Zone
+	Ryan	Justin Tervay Fan Club	$39 FRC 33 Killer Bees, $28 FRC 319 Big Bad BOB, $15 FRC 1073 The Force Team, $35 FRC 1241 Theory 6, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs, $38 FRC 5406 Celt-X
+	Drew		$25 FRC 548 Robostangs, $28 FRC 1807 Redbird Robotics, $76 FRC 2056 OP Robotics, $53 FRC 2910 Jack in the Bot, $18 FRC 4265 Secret City Wildbots
+	Ahmed 		$13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $47 FRC 195 CyberKnights, $11 FRC 1024 Kil-A-Bytes, $13 FRC 1410 The Kraken, $10 FRC 1730 Team Driven, $21 FRC 5010 Tiger Dynasty, $13 FRC 5205 Full Metal Jackets, $20 FRC 7498 Wingus & Dingus
+	Nelson	Corn is a side dish	$17 FRC 461 Westside Boiler Invasion, $13 FRC 1410 The Kraken, $27 FRC 1684 The Chimeras, $10 FRC 1730 Team Driven, $40 FRC 4362 The Gems, $20 FRC 4607 C.I.S., $38 FRC 5406 Celt-X, $15 FRC 5801 CTC Inspire, $20 FRC 7498 Wingus & Dingus
+	Ryan	Justin Tervay Fan Club	$39 FRC 33 Killer Bees, $28 FRC 319 Big Bad BOB, $15 FRC 1073 The Force Team, $35 FRC 1241 Theory 6, $11 FRC 3478 LamBot, $34 FRC 3707 Technodogs, $38 FRC 5406 Celt-X
+	D	Triple Hokie	$49 FRC 330 The Beach Bots, $15 FRC 1073 The Force Team, $66 FRC 1114 Simbotics, $28 FRC 1807 Redbird Robotics, $38 FRC 2481 Roboteers
+	Luke		$13 FRC 48 Team E.L.I.T.E., $28 FRC 364 Team Fusion, $11 FRC 1024 Kil-A-Bytes, $15 FRC 1073 The Force Team, $13 FRC 1410 The Kraken, $10 FRC 1730 Team Driven, $20 FRC 3357 The COMETS, $11 FRC 3478 LamBot, $14 FRC 3940 CyberTooth, $13 FRC 5205 Full Metal Jackets, $14 FRC 5511 Cortechs Robotics, $15 FRC 5801 CTC Inspire, $22 FRC 6443 AEMBOT
+	Nicholas		$39 FRC 33 Killer Bees, $13 FRC 48 Team E.L.I.T.E., $22 FRC 111 WildStang, $30 FRC 118 Robonauts, $25 FRC 548 Robostangs, $15 FRC 1073 The Force Team, $34 FRC 3707 Technodogs, $22 FRC 6443 AEMBOT
+	Irena	Nyet	$30 FRC 118 Robonauts, $49 FRC 330 The Beach Bots, $13 FRC 1410 The Kraken, $76 FRC 2056 OP Robotics, $32 FRC 5190 Green Hope Robotics
+	Madeline		$13 FRC 48 Team E.L.I.T.E., $29 FRC 107 Team R.O.B.O.T.I.C.S., $22 FRC 111 WildStang, $28 FRC 319 Big Bad BOB, $13 FRC 1410 The Kraken, $53 FRC 2910 Jack in the Bot, $22 FRC 6443 AEMBOT, $20 FRC 7498 Wingus & Dingus
+	Danny	:afeelsjam:	$39 FRC 33 Killer Bees, $28 FRC 319 Big Bad BOB, $25 FRC 548 Robostangs, $36 FRC 910 The Foley Freeze, $19 FRC 1747 Harrison Boiler Robotics, $19 FRC 1923 The MidKnight Inventors, $34 FRC 3707 Technodogs
+	Nicholas	The IT Crew	$30 FRC 118 Robonauts, $28 FRC 319 Big Bad BOB, $49 FRC 330 The Beach Bots, $37 FRC 2767 Stryke Force, $53 FRC 2910 Jack in the Bot
+	Ishaan	The magical corns	$30 FRC 118 Robonauts, $47 FRC 195 CyberKnights, $36 FRC 217 ThunderChickens, $49 FRC 330 The Beach Bots, $38 FRC 2481 Roboteers`
 
 var pickem = [];
 
