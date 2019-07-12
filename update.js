@@ -177,7 +177,7 @@ function update(){
 			$('table#pickem tbody').html('');
 			pickem2.forEach(function(val, i){
 				var row = $('table#pickem tbody')[0].insertRow(-1);
-				row.insertCell(0).innerHTML = i;
+				row.insertCell(0).innerHTML = i+1;
 				row.insertCell(1).innerHTML = val[0][0];
 				row.insertCell(2).innerHTML = val[0][1].join(', ');
 				row.insertCell(3).innerHTML = val[1];
@@ -188,7 +188,7 @@ function update(){
 			$('table#draft tbody').html('');
 			draft2.forEach(function(val, i){
 				var row = $('table#draft tbody')[0].insertRow(-1);
-				row.insertCell(0).innerHTML = i;
+				row.insertCell(0).innerHTML = i+1;
 				row.insertCell(1).innerHTML = val[0][0];
 				row.insertCell(2).innerHTML = val[0][1].join(', ');
 				row.insertCell(3).innerHTML = val[1];
