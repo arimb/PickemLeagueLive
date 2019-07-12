@@ -147,15 +147,17 @@ $(document).ready(function(){
 		});
 		pickem.push([name, picks]);
 		var row = $('table#pickem tbody')[0].insertRow(-1);
-		row.insertCell(0).innerHTML = name;
-		row.insertCell(1).innerHTML = picks.join(', ');
-		row.insertCell(2);
+		row.insertCell(0);
+		row.insertCell(1).innerHTML = name;
+		row.insertCell(2).innerHTML = picks.join(', ');
+		row.insertCell(3);
 	});
 	draft.forEach(function(line){
 		var row = $('table#draft tbody')[0].insertRow(-1);
-		row.insertCell(0).innerHTML = line[0];
-		row.insertCell(1).innerHTML = line[1].join(', ');
-		row.insertCell(2);
+		row.insertCell(0);
+		row.insertCell(1).innerHTML = line[0];
+		row.insertCell(2).innerHTML = line[1].join(', ');
+		row.insertCell(3);
 	})
 	$('tbody td').css('text-align', 'left');
 	$('button#go').click();
@@ -173,21 +175,23 @@ function update(){
 			var scores = pickem.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
 			pickem2 = zip([pickem, scores]).sort(x => x[1]);
 			$('table#pickem tbody').html('');
-			pickem2.forEach(function(val){
+			pickem2.forEach(function(val, i){
 				var row = $('table#pickem tbody')[0].insertRow(-1);
-				row.insertCell(0).innerHTML = val[0][0];
-				row.insertCell(1).innerHTML = val[0][1].join(', ');
-				row.insertCell(2).innerHTML = val[1];
+				row.insertCell(0).innerHTML = i;
+				row.insertCell(1).innerHTML = val[0][0];
+				row.insertCell(2).innerHTML = val[0][1].join(', ');
+				row.insertCell(3).innerHTML = val[1];
 			});
 
 			scores = draft.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
 			draft2 = zip([draft, scores]).sort(x => x[1]);
 			$('table#draft tbody').html('');
-			draft2.forEach(function(val){
+			draft2.forEach(function(val, i){
 				var row = $('table#draft tbody')[0].insertRow(-1);
-				row.insertCell(0).innerHTML = val[0][0];
-				row.insertCell(1).innerHTML = val[0][1].join(', ');
-				row.insertCell(2).innerHTML = val[1];
+				row.insertCell(0).innerHTML = i;
+				row.insertCell(1).innerHTML = val[0][0];
+				row.insertCell(2).innerHTML = val[0][1].join(', ');
+				row.insertCell(3).innerHTML = val[1];
 			});
 
 			$('div#last-updated').html('Last updated ' + new Date().toLocaleTimeString());
