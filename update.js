@@ -194,7 +194,13 @@ function update(){
 				row.insertCell(3).innerHTML = val[1];
 			});
 
-			$('div#last-updated').html('Last updated ' + new Date().toLocaleTimeString());
+			var last = 0;
+			for(var key in data){
+				if(!data[key]) return 0;
+				if(matchnum_encode(data[key]['last_match_key']) > last) last = matchnum_encode(data[key]['last_match_key']);
+			}
+			
+			$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Last updated ' + new Date().toLocaleTimeString());
 		// }catch(err){
 		// 	$('div#last-updated').html('Error loading event status.');
 		// }
@@ -215,6 +221,19 @@ function points(status){
 	}
 	if(status['playoff']) tmp += status['playoff']['record']['wins']*5;
 	return tmp;
+}
+
+function matchnum_encode(key){
+	var i = key.indexOf('_')+1;
+	return {'qm':0, 'qf':200, 'sf':300, 'f':400}[key.substring(i, i+2)] + parseInt(key.substring(i+2));
+}
+
+function matchnum_decode(num){
+	var lvl = ['qm', 0];
+	if(num >= 200) lvl = ['qf', 200];
+	if(num >= 300) lvl = ['sf', 300];
+	if(num >= 400) lvl = ['f', 400];
+	return lvl[0] + (num - lvl[1]).toString();
 }
 
 function erfinv(x){
