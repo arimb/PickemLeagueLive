@@ -169,11 +169,11 @@ function update(){
 	request.setRequestHeader('X-TBA-Auth-Key', 'h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv');
 	request.setRequestHeader('accept', 'application/json');
 	request.onload = function(){
-		try{
+		// try{
 			var data = JSON.parse(this.response);
 			
 			var scores = pickem.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
-			pickem2 = zip([pickem, scores]).sort(x => x[1]);
+			pickem2 = zip([pickem, scores]).sort((a,b) => a[1]-b[1]).reverse();
 			$('table#pickem tbody').html('');
 			pickem2.forEach(function(val, i){
 				var row = $('table#pickem tbody')[0].insertRow(-1);
@@ -184,7 +184,7 @@ function update(){
 			});
 
 			scores = draft.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
-			draft2 = zip([draft, scores]).sort(x => x[1]);
+			draft2 = zip([draft, scores]).sort((a,b) => a[1]-b[1]).reverse();
 			$('table#draft tbody').html('');
 			draft2.forEach(function(val, i){
 				var row = $('table#draft tbody')[0].insertRow(-1);
@@ -195,9 +195,9 @@ function update(){
 			});
 
 			$('div#last-updated').html('Last updated ' + new Date().toLocaleTimeString());
-		}catch(err){
-			$('div#last-updated').html('Error loading event status.');
-		}
+		// }catch(err){
+		// 	$('div#last-updated').html('Error loading event status.');
+		// }
 	};
 	request.onerror = function(){
 		$('div#last-updated').html('Error loading event status.');
@@ -206,6 +206,8 @@ function update(){
 }
 
 function points(status){
+	if(!status) return 0;
+	if(!status['qual']) return 0;
 	var tmp = Math.ceil(7.676*erfinv((status['qual']['num_teams']-2*status['qual']['ranking']['rank']+2)/(1.07*status['qual']['num_teams']))+12);
 	if(status['alliance']){
 		if(status['alliance']['pick']<=1) tmp += 17-status['alliance']['number'];
