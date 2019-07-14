@@ -225,7 +225,8 @@ function points(status){
 
 function matchnum_encode(key){
 	var i = key.indexOf('_')+1;
-	return {'qm':0, 'qf':200, 'sf':300, 'f':400}[key.substring(i, i+2)] + parseInt(key.substring(i+2));
+	var j = key.slice(i).search(/[0-9]/)+i;
+	return {'qm':0, 'qf':200, 'sf':300, 'f':400}[key.substring(i, j)] + parseFloat(key.substring(j).replace(/m/g, '.'));
 }
 
 function matchnum_decode(num){
@@ -233,7 +234,7 @@ function matchnum_decode(num){
 	if(num >= 200) lvl = ['qf', 200];
 	if(num >= 300) lvl = ['sf', 300];
 	if(num >= 400) lvl = ['f', 400];
-	return lvl[0] + (num - lvl[1]).toString();
+	return lvl[0] + (num - lvl[1]).toFixed(1).replace(/\./, '-');
 }
 
 function erfinv(x){
