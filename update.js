@@ -102,7 +102,7 @@ function points(status){
 	var tmp = Math.ceil(7.676*erfinv((status['qual']['num_teams']-2*status['qual']['ranking']['rank']+2)/(1.07*status['qual']['num_teams']))+12);
 	if(status['alliance']){
 		if(status['alliance']['pick']<=1) tmp += 17-status['alliance']['number'];
-		else if(status['alliance']['pick']==2) tmp += status['alliance']['number'];
+		else if(status['alliance']['pick']==2) tmp += 9-status['alliance']['number'];
 	}
 	if(status['playoff']) tmp += status['playoff']['record']['wins']*5;
 	return tmp;
