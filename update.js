@@ -1,94 +1,102 @@
+var events = {}
 var pickem = [];
-var draft = [['Popped Cargo', ['195', '217','225','1241','1720','1730','3478']],
-			 ['TBC', ['319','330','1073','3538','5460']],
-			 ['QD', ['910','930','1410','2337','2481','3707']],
-			 ['ROBOTICS', ['48','51','107','2910','5801','6443','7457','7498']],
-			 ['The Brian Griffins', ['111','1024','2056','2168','2614','4028']],
-			 ['Cup Of Joe', ['234','364','868','1676','3357','4362','5406','5511']],
-			 ['Just OK Robotics', ['548','1718','1923','2075','3357','3604','4607','4776','5205']],
-			 ['TLC', ['33','340','1684','2767','3847','4265']],
-			 ['The Maple Alliance', ['88','1114','1690','2468','3641']],
-			 ['Squad Behind The Glass', ['118','461','1023','1747','1807','2403','3940','5190']]];
+var draft = {};
 
 $(document).ready(function(){
-	$('button#go').click(update)
-
+	$('button#go').click(update);	//set update button click function
+	
+	//get draft lists and event id/url for all events
 	var request = new XMLHttpRequest();
-	request.open('GET', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRwJYnOBxFrHEqL87iRbxo-NuI8-cH0dyGUYcwjampLDKMl_HcvEY5Xq7EDgYr9tjdRafSdqRT2LJVX/pub?output=tsv', true);
+	request.open('GET', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTJPy6YhVVER4jqGS4nroJGXO_TSbQaa2ud3rpuNC0pgnKcQOBKIExPIGZnfc81VadZuGJKpwoGC1pl/pub?output=tsv', true);
+	// request.setRequestHeader('Cache-Control', 'no-cache');
 	request.onload = function(){
-		this.response.split('\n').slice(1).forEach(function(line){
-			var elements = line.split('\t');
-			if(parseInt(elements[0].substring(2))>200) return;
-			var name = elements[2];
-			if(name==='') name = elements[1];
-			var picks = elements[3].split(', ').map(function(str){
-				var start = str.indexOf('FRC ')+4;
-				return str.substring(start, str.indexOf(' ', start));
+		var teams = this.response.substring(0, this.response.indexOf('\n')).split('\t').slice(3);	//get draft team names
+		this.response.split('\n').slice(1).forEach(function(line){	//for each event
+			var vals = line.split('\t');
+			events[vals[0]] = vals.slice(1,3);	//save event id/url in global
+			draft[vals[0]] = [];
+			vals.slice(3).forEach(function(list){	//for each draft team
+				draft[vals[0]].push([list.substring(0,list.indexOf('-')), list.substring(list.indexOf('-')+1).split(',')]);		//add draft team to global
 			});
-			pickem.push([name, picks]);
-			var row = $('table#pickem tbody')[0].insertRow(-1);
-			row.insertCell(0);
-			row.insertCell(1).innerHTML = name;
-			row.insertCell(2).innerHTML = picks.join(', ');
-			row.insertCell(3);
 		});
+		Object.keys(events).forEach(function(event){	//add all events to dropdown list
+			$('select#event').append($('<option>', {
+				text: event,
+				value: events[event]
+			}));
+		});
+		$('select#event').change();		//import pickem lists
 	};
-	request.onerror = function(err){console.log(err);}
+	request.onerror = function(err){console.log(err);};
 	request.send();
 
-	draft.forEach(function(line){
-		var row = $('table#draft tbody')[0].insertRow(-1);
-		row.insertCell(0);
-		row.insertCell(1).innerHTML = line[0];
-		row.insertCell(2).innerHTML = line[1].join(', ');
-		row.insertCell(3);
-	})
-
-	$('tbody td').css('text-align', 'left');
-	$('button#go').click();
+	//get pickem lists for current event
+	$('select#event').change(function(){
+		var request = new XMLHttpRequest();
+		request.open('GET', $('select#event').children('option:selected')[0].value.split(',')[1], true);
+		// request.setRequestHeader('Cache-Control', 'no-cache');
+		request.onload = function(){
+			pickem = [];
+			this.response.split('\n').slice(1).forEach(function(line){		//for each pickem team
+				var elements = line.split('\t');
+				// if(parseInt(elements[0].substring(2))>200) return;		//reject teams over $200
+				var name = elements[3];		//default name is optional team name
+				if(name==='') name = elements[2];		//if no team name, use user first name
+				var sum = 0;
+				var picks = elements[5].split(', ').map(function(str){		//parse team numbers from list
+					sum += parseInt(str.substring(1, str.indexOf(' ')));
+					var start = str.indexOf('FRC ')+4;
+					return str.substring(start, str.indexOf(' ', start));
+				});
+				if(sum<=200) pickem.push([name, picks]);		//add team name and list to global
+			});
+			$('button#go').click();		//update scores
+		};
+		request.onerror = function(err){console.log(err);};
+		request.send();
+	});
 });
 
+//update scores for draft and pickem
 function update(){
 	var request = new XMLHttpRequest();
-	request.open('GET', 'https://www.thebluealliance.com/api/v3/event/2019iri/teams/statuses', true);
+	request.open('GET', 'https://www.thebluealliance.com/api/v3/event/' + $('select#event').children('option:selected')[0].value.split(',')[0] + '/teams/statuses', true);
 	request.setRequestHeader('X-TBA-Auth-Key', 'h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv');
 	request.setRequestHeader('accept', 'application/json');
 	request.onload = function(){
-		// try{
-			var data = JSON.parse(this.response);
-			
-			var scores = pickem.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
-			pickem2 = zip([pickem, scores]).sort((a,b) => a[1]-b[1]).reverse();
-			$('table#pickem tbody').html('');
-			pickem2.forEach(function(val, i){
-				var row = $('table#pickem tbody')[0].insertRow(-1);
-				row.insertCell(0).innerHTML = i+1;
-				row.insertCell(1).innerHTML = val[0][0];
-				row.insertCell(2).innerHTML = val[0][1].join(', ');
-				row.insertCell(3).innerHTML = val[1];
-			});
+		var data = JSON.parse(this.response);
+		
+		var pickem2 = pickem.map(val => [val, val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0)])	//calculate scores for all pickem teams...
+			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort
+		$('table#pickem tbody').html('');		//clear pickem table
+		pickem2.forEach(function(val, i){		//insert row for each pickem team and fill with data
+			var row = $('table#pickem tbody')[0].insertRow(-1);
+			row.insertCell(0).innerHTML = i+1;
+			row.insertCell(1).innerHTML = val[0][0];
+			row.insertCell(2).innerHTML = val[0][1].join(', ');
+			row.insertCell(3).innerHTML = val[1];
+		});
 
-			scores = draft.map(val => val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0));
-			draft2 = zip([draft, scores]).sort((a,b) => a[1]-b[1]).reverse();
-			$('table#draft tbody').html('');
-			draft2.forEach(function(val, i){
-				var row = $('table#draft tbody')[0].insertRow(-1);
-				row.insertCell(0).innerHTML = i+1;
-				row.insertCell(1).innerHTML = val[0][0];
-				row.insertCell(2).innerHTML = val[0][1].join(', ');
-				row.insertCell(3).innerHTML = val[1];
-			});
+		var draft2 = draft[$('select#event').children('option:selected')[0].text].map(val => [val, val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0)])	//calculate scores for all draft teams...
+			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort
+		$('table#draft tbody').html('');		//clear draft table
+		draft2.forEach(function(val, i){		//insert row for each draft team and fill with data
+			var row = $('table#draft tbody')[0].insertRow(-1);
+			row.insertCell(0).innerHTML = i+1;
+			row.insertCell(1).innerHTML = val[0][0];
+			row.insertCell(2).innerHTML = val[0][1].join(', ');
+			row.insertCell(3).innerHTML = val[1];
+		});
+		$('tbody td').css('text-align', 'left');
 
-			var last = 0;
-			for(var key in data){
-				if(!data[key]) return 0;
-				if(matchnum_encode(data[key]['last_match_key']) > last) last = matchnum_encode(data[key]['last_match_key']);
-			}
-			
-			$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Last updated ' + new Date().toLocaleTimeString());
-		// }catch(err){
-		// 	$('div#last-updated').html('Error loading event status.');
-		// }
+		//find last played match
+		var last = 0;
+		for(var key in data){
+			if(!data[key]) return 0;
+			if(matchnum_encode(data[key]['last_match_key']) > last) last = matchnum_encode(data[key]['last_match_key']);
+		}
+		
+		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Last updated ' + new Date().toLocaleTimeString());
 	};
 	request.onerror = function(){
 		$('div#last-updated').html('Error loading event status.');
@@ -96,24 +104,27 @@ function update(){
 	request.send();
 }
 
+//calculate points for a given team
 function points(status){
 	if(!status) return 0;
 	if(!status['qual']) return 0;
 	var tmp = Math.ceil(7.676*erfinv((status['qual']['num_teams']-2*status['qual']['ranking']['rank']+2)/(1.07*status['qual']['num_teams']))+12);
 	if(status['alliance']){
 		if(status['alliance']['pick']<=1) tmp += 17-status['alliance']['number'];
-		else if(status['alliance']['pick']==2) tmp += 9-status['alliance']['number'];
+		else if(status['alliance']['pick']==2) tmp += status['alliance']['number'];
 	}
 	if(status['playoff']) tmp += status['playoff']['record']['wins']*5;
 	return tmp;
 }
 
+//encode match key to number
 function matchnum_encode(key){
 	var i = key.indexOf('_')+1;
 	var j = key.slice(i).search(/[0-9]/)+i;
 	return {'qm':0, 'qf':200, 'sf':300, 'f':400}[key.substring(i, j)] + parseFloat(key.substring(j).replace(/m/g, '.'));
 }
 
+//decode match key from number
 function matchnum_decode(num){
 	var lvl = ['qm', 0];
 	if(num >= 200) lvl = ['qf', 200];
@@ -146,10 +157,4 @@ function erfinv(x){
             z = 0;
         }
   return z;
-}
-
-function zip(arrays) {
-    return Array.apply(null,Array(arrays[0].length)).map(function(_,i){
-        return arrays.map(function(array){return array[i]})
-    });
 }
