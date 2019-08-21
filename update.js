@@ -10,13 +10,12 @@ $(document).ready(function(){
 	request.open('GET', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTJPy6YhVVER4jqGS4nroJGXO_TSbQaa2ud3rpuNC0pgnKcQOBKIExPIGZnfc81VadZuGJKpwoGC1pl/pub?output=tsv', true);
 	// request.setRequestHeader('Cache-Control', 'no-cache');
 	request.onload = function(){
-		var teams = this.response.substring(0, this.response.indexOf('\n')).split('\t').slice(3);	//get draft team names
 		this.response.split('\n').slice(1).forEach(function(line){	//for each event
 			var vals = line.split('\t');
 			events[vals[0]] = vals.slice(1,3);	//save event id/url in global
 			draft[vals[0]] = [];
-			vals.slice(3).forEach(function(list){	//for each draft team
-				draft[vals[0]].push([list.substring(0,list.indexOf('-')), list.substring(list.indexOf('-')+1).split(',')]);		//add draft team to global
+			vals.slice(3).filter(team => team.length>0).forEach(function(list){	//for each draft team
+				draft[vals[0]].push([list.substring(0,list.indexOf('-')), list.substring(list.indexOf('-')+1).split(',').map(team => team.trim())]);		//add draft team to global
 			});
 		});
 		Object.keys(events).forEach(function(event){	//add all events to dropdown list
@@ -59,14 +58,31 @@ $(document).ready(function(){
 
 //update scores for draft and pickem
 function update(){
-	var request = new XMLHttpRequest();
-	request.open('GET', 'https://www.thebluealliance.com/api/v3/event/' + $('select#event').children('option:selected')[0].value.split(',')[0] + '/teams/statuses', true);
-	request.setRequestHeader('X-TBA-Auth-Key', 'h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv');
-	request.setRequestHeader('accept', 'application/json');
-	request.onload = function(){
-		var data = JSON.parse(this.response);
+	const promises = ['teams/statuses','matches/simple'].map(endpoint => new Promise(resolve => {
+   		var url = 'https://www.thebluealliance.com/api/v3/event/' + $('select#event').children('option:selected')[0].value.split(',')[0] + '/' + endpoint;
+		resolve($.getJSON(url, 'accept=application/json&X-TBA-Auth-Key=h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv'));
+	}));
+
+	Promise.all(promises).then(results => {
+		var points = {};
+		for(var team in results[0]){
+			if(!results[0][team]){points[team] = 0; continue;}
+			if(!results[0][team]['qual']){points[team] = 0; continue;}
+			var tmp = Math.ceil(7.676*erfinv((results[0][team]['qual']['num_teams']-2*results[0][team]['qual']['ranking']['rank']+2)/(1.07*results[0][team]['qual']['num_teams']))+12);
+			if(results[0][team]['alliance']){
+				if(results[0][team]['alliance']['pick']<2) tmp += 17-results[0][team]['alliance']['number'];
+				else if(results[0][team]['alliance']['pick']==2) tmp += results[0][team]['alliance']['number'];
+			}
+			points[team] = tmp;
+		}
+		results[1].forEach(function(match){
+			if(match['comp_level'] == 'qm') return;
+			match['alliances'][match['winning_alliance']]['team_keys'].forEach(function(team){
+				points[team] += 5;
+			});
+		});
 		
-		var pickem2 = pickem.map(val => [val, val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0)])	//calculate scores for all pickem teams...
+		var pickem2 = pickem.map(val => [val, val[1].map(pick => points['frc'+pick]).filter(points => !isNaN(points)).reduce((a,b) => a+b, 0)])	//calculate scores for all pickem teams...
 			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort
 		$('table#pickem tbody').html('');		//clear pickem table
 		pickem2.forEach(function(val, i){		//insert row for each pickem team and fill with data
@@ -77,7 +93,7 @@ function update(){
 			row.insertCell(3).innerHTML = val[1];
 		});
 
-		var draft2 = draft[$('select#event').children('option:selected')[0].text].map(val => [val, val[1].map(pick => points(data['frc'+pick])).reduce((a,b) => a+b, 0)])	//calculate scores for all draft teams...
+		var draft2 = draft[$('select#event').children('option:selected')[0].text].map(val => [val, val[1].map(pick => points['frc'+pick]).filter(points => !isNaN(points)).reduce((a,b) => a+b, 0)])	//calculate scores for all draft teams...
 			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort
 		$('table#draft tbody').html('');		//clear draft table
 		draft2.forEach(function(val, i){		//insert row for each draft team and fill with data
@@ -91,30 +107,14 @@ function update(){
 
 		//find last played match
 		var last = 0;
-		for(var key in data){
-			if(!data[key]) return 0;
-			if(matchnum_encode(data[key]['last_match_key']) > last) last = matchnum_encode(data[key]['last_match_key']);
+		for(var key in results[1]){
+			if(!results[1][key]) return 0;
+			if(results[1][key]['alliances']['red']['score'] == -1) return 0;
+			if(matchnum_encode(results[1][key]['key']) > last) last = matchnum_encode(results[1][key]['key']);
 		}
 		
 		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Last updated ' + new Date().toLocaleTimeString());
-	};
-	request.onerror = function(){
-		$('div#last-updated').html('Error loading event status.');
-	};
-	request.send();
-}
-
-//calculate points for a given team
-function points(status){
-	if(!status) return 0;
-	if(!status['qual']) return 0;
-	var tmp = Math.ceil(7.676*erfinv((status['qual']['num_teams']-2*status['qual']['ranking']['rank']+2)/(1.07*status['qual']['num_teams']))+12);
-	if(status['alliance']){
-		if(status['alliance']['pick']<=1) tmp += 17-status['alliance']['number'];
-		else if(status['alliance']['pick']==2) tmp += status['alliance']['number'];
-	}
-	if(status['playoff']) tmp += status['playoff']['record']['wins']*5;
-	return tmp;
+	});
 }
 
 //encode match key to number
