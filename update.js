@@ -58,29 +58,37 @@ $(document).ready(function(){
 
 //update scores for draft and pickem
 function update(){
-	const promises = ['teams/statuses','matches/simple'].map(endpoint => new Promise(resolve => {
+	const promises = ['teams/statuses','matches/simple'].map(endpoint => new Promise(resolve => {		//make API calls
    		var url = 'https://www.thebluealliance.com/api/v3/event/' + $('select#event').children('option:selected')[0].value.split(',')[0] + '/' + endpoint;
 		resolve($.getJSON(url, 'accept=application/json&X-TBA-Auth-Key=h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv'));
 	}));
 
-	Promise.all(promises).then(results => {
+	Promise.all(promises).then(results => {		//when all API calls finish...
 		var points = {};
 		for(var team in results[0]){
 			if(!results[0][team]){points[team] = 0; continue;}
 			if(!results[0][team]['qual']){points[team] = 0; continue;}
-			var tmp = Math.ceil(7.676*erfinv((results[0][team]['qual']['num_teams']-2*results[0][team]['qual']['ranking']['rank']+2)/(1.07*results[0][team]['qual']['num_teams']))+12);
-			if(results[0][team]['alliance']){
+			var tmp = Math.ceil(7.676*erfinv((results[0][team]['qual']['num_teams']-2*results[0][team]['qual']['ranking']['rank']+2)/(1.07*results[0][team]['qual']['num_teams']))+12);		//assign each team qual scores
+			if(results[0][team]['alliance']){		//if team is selected, add their alliance selection scores
 				if(results[0][team]['alliance']['pick']<2) tmp += 17-results[0][team]['alliance']['number'];
 				else if(results[0][team]['alliance']['pick']==2) tmp += results[0][team]['alliance']['number'];
 			}
 			points[team] = tmp;
 		}
-		results[1].forEach(function(match){
-			if(match['comp_level'] == 'qm') return;
-			match['alliances'][match['winning_alliance']]['team_keys'].forEach(function(team){
-				points[team] += 5;
+		results[1].forEach(function(match){		//for each match played...
+			if(match['comp_level'] == 'qm') return;		//if it's a playoff match...
+			match['alliances'][match['winning_alliance']]['team_keys'].forEach(function(team){		//for each team that won the match...
+				points[team] += 5;		//add playoff points
 			});
 		});
+
+		$('table#teams tbody').html('');		//clear teams table
+		Object.keys(points).sort(function(a,b){return points[b]-points[a]}).forEach(function(team, i){		//sort teams by points, and add each to table
+			var row = $('table#teams tbody')[0].insertRow(-1);
+			row.insertCell(0).innerHTML = i+1;
+			row.insertCell(1).innerHTML = team;
+			row.insertCell(2).innerHTML = points[team];
+		})
 		
 		var pickem2 = pickem.map(val => [val, val[1].map(pick => points['frc'+pick]).filter(points => !isNaN(points)).reduce((a,b) => a+b, 0)])	//calculate scores for all pickem teams...
 			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort

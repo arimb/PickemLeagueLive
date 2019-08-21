@@ -17,6 +17,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="cache-control" content="no-cache" />
+	<style type="text/css">
+		summary {
+				display: block;
+				font-size: 1.5em;
+				margin-block-start: 0.83em;
+				margin-block-end: 0.83em;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				font-weight: bold;
+		}
+	</style>
 </head>
 <body align='center'>
 	<div id='header'>
@@ -28,31 +39,55 @@
 	</div>
 	<br>
 	<div id='tables'>
-		<h2>Live Draft Teams</h2>
-		<table id='draft' class='pure-table' align='center'>
-			<thead>
-				<tr align='center'>
-					<td>Rank</td>
-					<td>Team Name</td>
-					<td>Pick List</td>
-					<td>Score</td>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
+		<details open>
+			<summary>
+				Live Draft Teams
+			</summary>
+			<table id='draft' class='pure-table' align='center'>
+				<thead>
+					<tr align='center'>
+						<td>Rank</td>
+						<td>Team Name</td>
+						<td>Pick List</td>
+						<td>Score</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<br>
+		</details>
+		<details open>
+			<summary>
+				Pick'Em League Teams
+			</summary>
+			<table id='pickem' class='pure-table' align='center'>
+				<thead>
+					<tr align='center'>
+						<td>Rank</td>
+						<td>Team Name</td>
+						<td>Pick List</td>
+						<td>Score</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		<br>
-		<h2>Pick'Em League Teams</h2>
-		<table id='pickem' class='pure-table' align='center'>
-			<thead>
-				<tr align='center'>
-					<td>Rank</td>
-					<td>Team Name</td>
-					<td>Pick List</td>
-					<td>Score</td>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
+		</details>
+		<details>
+			<summary>
+				Individual Team Scores
+			</summary>
+			<table id='teams' class='pure-table' align='center'>
+				<thead>
+					<tr align='center'>
+						<td>Rank</td>
+						<td>Team #</td>
+						<td>Score</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</details>
 	</div>
 	<br>
 	<br>
