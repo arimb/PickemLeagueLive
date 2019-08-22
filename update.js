@@ -86,7 +86,7 @@ function update(){
 		Object.keys(points).sort(function(a,b){return points[b]-points[a]}).forEach(function(team, i){		//sort teams by points, and add each to table
 			var row = $('table#teams tbody')[0].insertRow(-1);
 			row.insertCell(0).innerHTML = i+1;
-			row.insertCell(1).innerHTML = team;
+			row.insertCell(1).innerHTML = team.substring(3);
 			row.insertCell(2).innerHTML = points[team];
 		})
 		
