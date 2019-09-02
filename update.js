@@ -111,7 +111,6 @@ function update(){
 			row.insertCell(2).innerHTML = val[0][1].join(', ');
 			row.insertCell(3).innerHTML = val[1];
 		});
-		$('tbody td').css('text-align', 'left');
 
 		//find last played match
 		var last = 0;
