@@ -120,7 +120,7 @@ function update(){
 			if(matchnum_encode(results[1][key]['key']) > last) last = matchnum_encode(results[1][key]['key']);
 		}
 		
-		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Last updated ' + new Date().toLocaleTimeString());
+		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '<br>Updated ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
 	});
 }
 

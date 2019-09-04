@@ -41,25 +41,19 @@
 		h1 {
 			font-size: 2.5em;
 		}
-		.center {
-			/*display:inline-block;
-			position:absolute;
-			left:0;
-			right:0;*/
-		}
 	</style>
 </head>
 <body align='center'>
 	<div id='header'>
-		<div style='/*display:inline-block;*/ float:left;' align='left'>
+		<div style='float:left;' align='left'>
 			<img src='fun_logo.png' style='width:145px;'>
 			<h5 style='text-align:left; margin-bottom:25px;'>
 				Website created by:<br>Ari Meles-Braverman
 			</h5>
 			<div align='center'>
 				<h3>Select Event</h3>
-				<select id='event' style='margin-bottom: 10px;'></select>
-				<div id='last-updated'></div>
+				<select id='event' style='margin-bottom:10px;'></select>
+				<div id='last-updated' style='text-align:left;'></div>
 				<button id='go' class='pure-button'>REFRESH</button>
 			</div>
 		</div>
@@ -72,54 +66,48 @@
 			<summary>
 				Live Draft Teams
 			</summary>
-			<div class='center'>
-				<table id='draft' class='pure-table' align='center'>
-					<thead>
-						<tr align='center'>
-							<td>Rank</td>
-							<td>Team Name</td>
-							<td>Pick List</td>
-							<td>Score</td>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
+			<table id='draft' class='pure-table' align='center'>
+				<thead>
+					<tr align='center'>
+						<td>Rank</td>
+						<td>Team Name</td>
+						<td>Pick List</td>
+						<td>Score</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</details>
 		<details open>
 			<summary>
 				Pick'Em League Teams
 			</summary>
-			<div class='center'>
-				<table id='pickem' class='pure-table' align='center'>
-					<thead>
-						<tr align='center'>
-							<td>Rank</td>
-							<td>Team Name</td>
-							<td>Pick List</td>
-							<td>Score</td>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
+			<table id='pickem' class='pure-table' align='center'>
+				<thead>
+					<tr align='center'>
+						<td>Rank</td>
+						<td>Team Name</td>
+						<td>Pick List</td>
+						<td>Score</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</details>
 		<details>
 			<summary>
 				Individual Team Scores
 			</summary>
-			<div class='center'>
-				<table id='teams' class='pure-table' align='center'>
-					<thead>
-						<tr align='center'>
-							<td>Rank</td>
-							<td>Team #</td>
-							<td>Score</td>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
+			<table id='teams' class='pure-table' align='center'>
+				<thead>
+					<tr align='center'>
+						<td>Rank</td>
+						<td>Team #</td>
+						<td>Score</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</details>
 	</div>
 	<br>
