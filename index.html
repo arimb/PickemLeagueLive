@@ -10,7 +10,7 @@
 		gtag('config', 'UA-135433990-2');
 	</script>
 
-	<title>Pick'Em League Live</title>
+	<title>FUN Pick'Em League</title>
 	<script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 	<script type="text/javascript" src='update.js'></script>
 	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
@@ -35,66 +35,91 @@
 			background-color: white !important;
 			text-align: left;
 		}
+		h1,h3,h5 {
+			margin: 5px;
+		}
+		h1 {
+			font-size: 2.5em;
+		}
+		.center {
+			/*display:inline-block;
+			position:absolute;
+			left:0;
+			right:0;*/
+		}
 	</style>
 </head>
 <body align='center'>
 	<div id='header'>
-		<br>
-		<select id='event' style='margin-bottom: 10px;'></select>
-		<br>
-		<div id='last-updated'></div>
-		<button id='go' class='pure-button'>REFRESH</button>
+		<div style='/*display:inline-block;*/ float:left;' align='left'>
+			<img src='fun_logo.png' style='width:145px;'>
+			<h5 style='text-align:left; margin-bottom:25px;'>
+				Website created by:<br>Ari Meles-Braverman
+			</h5>
+			<div align='center'>
+				<h3>Select Event</h3>
+				<select id='event' style='margin-bottom: 10px;'></select>
+				<div id='last-updated'></div>
+				<button id='go' class='pure-button'>REFRESH</button>
+			</div>
+		</div>
+		<div style='display:inline-block; margin-top:10px;'>
+			<h1>FUN Pick'Em League</h1>
+		</div>
 	</div>
-	<br>
 	<div id='tables'>
 		<details open>
 			<summary>
 				Live Draft Teams
 			</summary>
-			<table id='draft' class='pure-table' align='center'>
-				<thead>
-					<tr align='center'>
-						<td>Rank</td>
-						<td>Team Name</td>
-						<td>Pick List</td>
-						<td>Score</td>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-			<br>
+			<div class='center'>
+				<table id='draft' class='pure-table' align='center'>
+					<thead>
+						<tr align='center'>
+							<td>Rank</td>
+							<td>Team Name</td>
+							<td>Pick List</td>
+							<td>Score</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</details>
 		<details open>
 			<summary>
 				Pick'Em League Teams
 			</summary>
-			<table id='pickem' class='pure-table' align='center'>
-				<thead>
-					<tr align='center'>
-						<td>Rank</td>
-						<td>Team Name</td>
-						<td>Pick List</td>
-						<td>Score</td>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-		<br>
+			<div class='center'>
+				<table id='pickem' class='pure-table' align='center'>
+					<thead>
+						<tr align='center'>
+							<td>Rank</td>
+							<td>Team Name</td>
+							<td>Pick List</td>
+							<td>Score</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</details>
 		<details>
 			<summary>
 				Individual Team Scores
 			</summary>
-			<table id='teams' class='pure-table' align='center'>
-				<thead>
-					<tr align='center'>
-						<td>Rank</td>
-						<td>Team #</td>
-						<td>Score</td>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+			<div class='center'>
+				<table id='teams' class='pure-table' align='center'>
+					<thead>
+						<tr align='center'>
+							<td>Rank</td>
+							<td>Team #</td>
+							<td>Score</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</details>
 	</div>
 	<br>
