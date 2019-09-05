@@ -44,22 +44,28 @@
 	</style>
 </head>
 <body align='center'>
-	<div id='left-bar' style='position:fixed; left:0;' align='left'>
-		<img src='fun_logo.png' style='width:145px;'>
-		<h5 style='text-align:left; margin-bottom:25px;'>
-			Website created by:<br>Ari Meles-Braverman
-		</h5>
-		<div align='center'>
-			<h3>Select Event</h3>
-			<select id='event'></select>
-			<div id='last-updated' style='text-align:left; margin:10px;'>Loading...</div>
-			<button id='go' class='pure-button'>REFRESH</button>
+	<div id='header' style='display:inline-block; width:100%;'>
+		<div style='float:left;' align='left'>
+			<img src='fun_logo.png' style='width:145px;'>
+			<h5 style='text-align:left;'>
+				Website created by:<br>Ari Meles-Braverman
+			</h5>
+		</div>
+		<div style='display:inline-block; margin-top:10px; width:450px; position:absolute; left:50%; margin-left:-225px;'>
+			<h1>FUN Pick'Em League</h1>
+			<div style='display:inline-block;'>
+				<div align='center' style='float:left; margin-right:10px;'>
+					<h3>Select Event</h3>
+					<select id='event'></select>
+				</div>
+				<div style='float:left; margin-top:18.4px;'>
+					<button id='go' class='pure-button'>REFRESH</button>
+				</div>
+			</div>
+			<div id='last-updated' style='margin:10px; text-align:center;'>Loading...</div>
 		</div>
 	</div>
-	<div id='tables' style='margin-left:155px; margin-right:10px;'>
-		<div style='display:inline-block; margin-top:10px;'>
-			<h1>FUN Pick'Em League</h1>
-		</div>
+	<div id='tables' style='margin-top:-20px;'>
 		<details open>
 			<summary>
 				Live Draft Teams

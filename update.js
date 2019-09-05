@@ -8,7 +8,6 @@ $(document).ready(function(){
 	//get draft lists and event id/url for all events
 	var request = new XMLHttpRequest();
 	request.open('GET', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTJPy6YhVVER4jqGS4nroJGXO_TSbQaa2ud3rpuNC0pgnKcQOBKIExPIGZnfc81VadZuGJKpwoGC1pl/pub?output=tsv', true);
-	// request.setRequestHeader('Cache-Control', 'no-cache');
 	request.onload = function(){
 		this.response.split('\n').slice(1).forEach(function(line){	//for each event
 			var vals = line.split('\t');
@@ -39,7 +38,6 @@ $(document).ready(function(){
 			pickem = [];
 			this.response.split('\n').slice(1).forEach(function(line){		//for each pickem team
 				var elements = line.split('\t');
-				// if(parseInt(elements[0].substring(2))>200) return;		//reject teams over $200
 				var name = elements[3];		//default name is optional team name
 				if(name==='') name = elements[2];		//if no team name, use user first name
 				var sum = 0;
@@ -122,7 +120,7 @@ function update(){
 			if(matchnum_encode(results[1][key]['key']) > last) last = matchnum_encode(results[1][key]['key']);
 		}
 		
-		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '<br>Updated ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Updated ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
 	});
 }
 
