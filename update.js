@@ -2,6 +2,26 @@ var events = {}
 var pickem = [];
 var draft = {};
 
+$(window).resize(function(){
+	if($(this).width() < 600){
+		$('div#logo').hide();
+		$('div#spacer').show();
+	}else{
+		$('div#logo').show();
+		$('div#spacer').hide();
+	}
+
+	if($(this).width() < 450){
+		$('div#title').css('position','static');
+		$('div#title').css('width','auto');
+		$('div#title').css('margin-left','0px');
+	}else{
+		$('div#title').css('position','absolute');
+		$('div#title').css('width','450px');
+		$('div#title').css('margin-left','-225px');
+	}
+})
+
 $(document).ready(function(){
 	$('button#go').click(update);	//set update button click function
 	
