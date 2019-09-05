@@ -11,7 +11,7 @@ $(window).resize(function(){
 		$('div#spacer').hide();
 	}
 
-	if($(this).width() < 450){
+	if($(this).width() < 700){
 		$('div#title').css('position','static');
 		$('div#title').css('width','auto');
 		$('div#title').css('margin-left','0px');
@@ -23,6 +23,7 @@ $(window).resize(function(){
 })
 
 $(document).ready(function(){
+	$(window).resize();
 	$('button#go').click(update);	//set update button click function
 	
 	//get draft lists and event id/url for all events
