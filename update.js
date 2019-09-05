@@ -31,6 +31,7 @@ $(document).ready(function(){
 
 	//get pickem lists for current event
 	$('select#event').change(function(){
+		$('div#last-updated').html('Loading...');
 		var request = new XMLHttpRequest();
 		request.open('GET', $('select#event').children('option:selected')[0].value.split(',')[1], true);
 		// request.setRequestHeader('Cache-Control', 'no-cache');
@@ -58,6 +59,7 @@ $(document).ready(function(){
 
 //update scores for draft and pickem
 function update(){
+	$('div#last-updated').html('Loading...');
 	const promises = ['teams/statuses','matches/simple'].map(endpoint => new Promise(resolve => {		//make API calls
    		var url = 'https://www.thebluealliance.com/api/v3/event/' + $('select#event').children('option:selected')[0].value.split(',')[0] + '/' + endpoint;
 		resolve($.getJSON(url, 'accept=application/json&X-TBA-Auth-Key=h28l9eYEBtOCXpcFQN821YZRbjr0rTh2UdGFwqVf2jb36Sjvx2xYyUrZB5MPVJwv'));
