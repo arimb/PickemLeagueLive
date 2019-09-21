@@ -133,6 +133,12 @@ function update(){
 			row.insertCell(3).innerHTML = val[1];
 		});
 
+		if(draft2.length == 0){
+			$('details#draft').css('display','none');
+		}else{
+			$('details#draft').css('display','block');
+		}
+
 		//find last played match
 		var last = 0;
 		for(var key in results[1]){
