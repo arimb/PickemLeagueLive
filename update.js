@@ -31,10 +31,12 @@ $(document).ready(function(){
 	request.open('GET', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTJPy6YhVVER4jqGS4nroJGXO_TSbQaa2ud3rpuNC0pgnKcQOBKIExPIGZnfc81VadZuGJKpwoGC1pl/pub?output=tsv', true);
 	request.onload = function(){
 		this.response.split('\n').slice(1).forEach(function(line){	//for each event
+			if(line.trim()==='') return;
 			var vals = line.split('\t');
 			events[vals[0]] = vals.slice(1,3);	//save event id/url in global
 			draft[vals[0]] = [];
 			vals.slice(3).filter(team => team.length>0).forEach(function(list){	//for each draft team
+				if(list.trim()==='') return;
 				draft[vals[0]].push([list.substring(0,list.indexOf('-')), list.substring(list.indexOf('-')+1).split(',').map(team => team.trim())]);		//add draft team to global
 			});
 		});
@@ -58,6 +60,7 @@ $(document).ready(function(){
 		request.onload = function(){
 			pickem = [];
 			this.response.split('\n').slice(1).forEach(function(line){		//for each pickem team
+				if(line.trim()==='') return;
 				var elements = line.split('\t');
 				var name = elements[3];		//default name is optional team name
 				if(name==='') name = elements[2];		//if no team name, use user first name
