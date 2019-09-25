@@ -90,10 +90,10 @@ function update(){
 	Promise.all(promises).then(results => {		//when all API calls finish...
 		var points = {};
 		for(var team in results[0]){
-			if(!results[0][team]){points[team] = 0; continue;}
-			if(!results[0][team]['qual']){points[team] = 0; continue;}
-			if(!results[0][team]['qual']['ranking']){points[team] = 0; continue;}
-			if(!results[0][team]['qual']['ranking']['rank']){points[team] = 0; continue;}
+			if(!results[0][team]){points[team] = 0; $('div#last-updated').html(''); continue;}
+			if(!results[0][team]['qual']){points[team] = 0; $('div#last-updated').html(''); continue;}
+			if(!results[0][team]['qual']['ranking']){points[team] = 0; $('div#last-updated').html(''); continue;}
+			if(!results[0][team]['qual']['ranking']['rank']){points[team] = 0; $('div#last-updated').html(''); continue;}
 			var tmp = Math.ceil(7.676*erfinv((results[0][team]['qual']['num_teams']-2*results[0][team]['qual']['ranking']['rank']+2)/(1.07*results[0][team]['qual']['num_teams']))+12);		//assign each team qual scores
 			if(results[0][team]['alliance']){		//if team is selected, add their alliance selection scores
 				if(results[0][team]['alliance']['pick']<2) tmp += 17-results[0][team]['alliance']['number'];
