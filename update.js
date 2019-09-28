@@ -109,19 +109,20 @@ function update(){
 		});
 
 		$('table#teams tbody').html('');		//clear teams table
-		Object.keys(points).sort(function(a,b){return points[b]-points[a]}).forEach(function(team, i){		//sort teams by points, and add each to table
+		var points2 = Object.keys(points).sort(function(a,b){return points[b]-points[a]}).map(team => [team, points[team]]);		//sort teams by points
+		points2.forEach(function(team, i){		//...add each to table
 			var row = $('table#teams tbody')[0].insertRow(-1);
-			row.insertCell(0).innerHTML = i+1;
-			row.insertCell(1).innerHTML = team.substring(3);
-			row.insertCell(2).innerHTML = points[team];
-		})
+			row.insertCell(0).innerHTML = (i==0?1:points2[i-1][1]==team[1]?'':i+1);
+			row.insertCell(1).innerHTML = team[0].substring(3);
+			row.insertCell(2).innerHTML = team[1];
+		});
 		
 		var pickem2 = pickem.map(val => [val, val[1].map(pick => points['frc'+pick]).filter(points => !isNaN(points)).reduce((a,b) => a+b, 0)])	//calculate scores for all pickem teams...
 			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort
 		$('table#pickem tbody').html('');		//clear pickem table
 		pickem2.forEach(function(val, i){		//insert row for each pickem team and fill with data
 			var row = $('table#pickem tbody')[0].insertRow(-1);
-			row.insertCell(0).innerHTML = i+1;
+			row.insertCell(0).innerHTML = (i==0?1:pickem2[i-1][1]==val[1]?'':i+1);
 			row.insertCell(1).innerHTML = val[0][0];
 			row.insertCell(2).innerHTML = val[0][1].join(', ');
 			row.insertCell(3).innerHTML = val[1];
@@ -132,7 +133,7 @@ function update(){
 		$('table#draft tbody').html('');		//clear draft table
 		draft2.forEach(function(val, i){		//insert row for each draft team and fill with data
 			var row = $('table#draft tbody')[0].insertRow(-1);
-			row.insertCell(0).innerHTML = i+1;
+			row.insertCell(0).innerHTML = (i==0?1:draft2[i-1][1]==val[1]?'':i+1);
 			row.insertCell(1).innerHTML = val[0][0];
 			row.insertCell(2).innerHTML = val[0][1].join(', ');
 			row.insertCell(3).innerHTML = val[1];
