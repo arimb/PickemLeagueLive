@@ -147,8 +147,8 @@ function update(){
 		//find last played match
 		var last = 0;
 		for(var key in results[1]){
-			if(!results[1][key]) return 0;
-			if(results[1][key]['alliances']['red']['score'] == -1) return 0;
+			if(!results[1][key]) continue;
+			if(results[1][key]['alliances']['red']['score'] == -1) continue;
 			if(matchnum_encode(results[1][key]['key']) > last) last = matchnum_encode(results[1][key]['key']);
 		}
 		
