@@ -165,11 +165,14 @@ function matchnum_encode(key){
 
 //decode match key from number
 function matchnum_decode(num){
-	var lvl = ['qm', 0];
+	var lvl = 'qm';
 	if(num >= 200) lvl = ['qf', 200];
 	if(num >= 300) lvl = ['sf', 300];
 	if(num >= 400) lvl = ['f', 400];
-	return lvl[0] + (num - lvl[1]).toFixed(1).replace(/\./, '-');
+	if(lvl == 'qm')
+		return 'qm' + num;
+	else
+		return lvl[0] + (num - lvl[1]).toFixed(1).replace(/\./, '-');
 }
 
 function erfinv(x){
