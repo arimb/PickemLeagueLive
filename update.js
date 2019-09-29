@@ -150,7 +150,7 @@ function update(){
 		for(var key in results[1]){
 			if(!results[1][key]) continue;
 			if(results[1][key]['alliances']['red']['score'] == -1) continue;
-			if(matchnum_encode(results[1][key]['key']) > last) last = matchnum_encode(results[1][key]['key']);
+			if(matchnum_encode(results[1][key]) > last) last = matchnum_encode(results[1][key]);
 		}
 		
 		$('div#last-updated').html('Last match ' + matchnum_decode(last) + '. Updated ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
@@ -158,22 +158,13 @@ function update(){
 }
 
 //encode match key to number
-function matchnum_encode(key){
-	var i = key.indexOf('_')+1;
-	var j = key.slice(i).search(/[0-9]/)+i;
-	return {'qm':0, 'qf':200, 'sf':300, 'f':400}[key.substring(i, j)] + parseFloat(key.substring(j).replace(/m/g, '.'));
+function matchnum_encode(match){
+	return {'qm':0, 'qf':10, 'sf':20, 'f':30}[match['comp_level']] + match['set_number'] + (match['match_number']/1000);
 }
 
 //decode match key from number
 function matchnum_decode(num){
-	var lvl = 'qm';
-	if(num >= 200) lvl = ['qf', 200];
-	if(num >= 300) lvl = ['sf', 300];
-	if(num >= 400) lvl = ['f', 400];
-	if(lvl == 'qm')
-		return 'qm' + num;
-	else
-		return lvl[0] + (num - lvl[1]).toFixed(1).replace(/\./, '-');
+	return {0:'qm', 1:'qf', 2:'sf', 3:'f'}[Math.floor(num/10)] + ((num==Math.floor(num))?'':((Math.floor(num)%10) + '-')) + Math.round((num%1)*1000);
 }
 
 function erfinv(x){
