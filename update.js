@@ -159,12 +159,12 @@ function update(){
 
 //encode match key to number
 function matchnum_encode(match){
-	return {'qm':0, 'qf':10, 'sf':20, 'f':30}[match['comp_level']] + match['set_number'] + (match['match_number']/1000);
+	return {'qm':0, 'qf':1000, 'sf':2000, 'f':3000}[match['comp_level']] + match['match_number'] + (match['set_number']/10);
 }
 
 //decode match key from number
 function matchnum_decode(num){
-	return {0:'qm', 1:'qf', 2:'sf', 3:'f'}[Math.floor(num/10)] + ((num==Math.floor(num))?'':((Math.floor(num)%10) + '-')) + Math.round((num%1)*1000);
+	return {0:'qm', 1:'qf', 2:'sf', 3:'f'}[Math.floor(num/1000)] + ((Math.floor(num/1000)==0)?'':(Math.round((num%1)*10) + '-')) + (Math.floor(num)%1000);
 }
 
 function erfinv(x){
