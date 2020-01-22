@@ -33,9 +33,9 @@ $(document).ready(function(){
 		this.response.split('\n').slice(1).forEach(function(line){	//for each event
 			if(line.trim()==='') return;
 			var vals = line.split('\t');
-			events[vals[0]] = vals.slice(1,3);	//save event id/url in global
+			events[vals[0]] = vals.slice(1,4);	//save event id/url in global
 			draft[vals[0]] = [];
-			vals.slice(3).filter(team => team.length>0).forEach(function(list){	//for each draft team
+			vals.slice(4).filter(team => team.length>0).forEach(function(list){	//for each draft team
 				if(list.trim()==='') return;
 				draft[vals[0]].push([list.substring(0,list.indexOf('-')), list.substring(list.indexOf('-')+1).split(',').map(team => team.trim())]);		//add draft team to global
 			});
@@ -108,14 +108,33 @@ function update(){
 			});
 		});
 
-		$('table#teams tbody').html('');		//clear teams table
-		var points2 = Object.keys(points).sort(function(a,b){return points[b]-points[a]}).map(team => [team, points[team]]);		//sort teams by points
-		points2.forEach(function(team, i){		//...add each to table
-			var row = $('table#teams tbody')[0].insertRow(-1);
-			row.insertCell(0).innerHTML = (i==0?1:points2[i-1][1]==team[1]?'':i+1);
-			row.insertCell(1).innerHTML = team[0].substring(3);
-			row.insertCell(2).innerHTML = team[1];
+		var prices = {};
+		$('select#event').children('option:selected')[0].value.split(',').slice(2).map(str => str.trim()).map(function(str){
+			var start = str.indexOf('FRC ')+4;
+			return [str.substring(start, str.indexOf(' ', start)), parseInt(str.substring(1, str.indexOf(' ')))];
+		}).forEach(function(val){
+			prices[val[0]] = val[1];
 		});
+		console.log(prices);
+		$('table#teams tbody').html('');		//clear teams table
+		Object.keys(points).forEach(function(team, i){
+			var row = $('table#teams tbody')[0].insertRow(-1);
+			row.insertCell(0).innerHTML = i;
+			row.insertCell(1).innerHTML = team.substring(3);
+			row.insertCell(2).innerHTML = points[team];
+			row.insertCell(3).innerHTML = '$' + prices[team.substring(3)];
+			row.insertCell(4).innerHTML = (points[team]/prices[team.substring(3)]).toFixed(2);
+		});
+		$('table#teams th:nth-child(3)').click();
+
+		// $('table#teams tbody').html('');		//clear teams table
+		// var points2 = Object.keys(points).sort(function(a,b){return points[b]-points[a]}).map(team => [team, points[team]]);		//sort teams by points
+		// points2.forEach(function(team, i){		//...add each to table
+		// 	var row = $('table#teams tbody')[0].insertRow(-1);
+		// 	row.insertCell(0).innerHTML = (i==0?1:points2[i-1][1]==team[1]?'':i+1);
+		// 	row.insertCell(1).innerHTML = team[0].substring(3);
+		// 	row.insertCell(2).innerHTML = team[1];
+		// });
 		
 		var pickem2 = pickem.map(val => [val, val[1].map(pick => points['frc'+pick]).filter(points => !isNaN(points)).reduce((a,b) => a+b, 0)])	//calculate scores for all pickem teams...
 			.sort((a,b) => a[1]-b[1]).reverse();	//...and sort
@@ -191,4 +210,66 @@ function erfinv(x){
             z = 0;
         }
   return z;
+}
+
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = $('table#teams')[0];
+  switching = true;
+  dir = ["", "asc", "desc", "desc", "desc"][n];
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (parseInt(x.innerHTML.toLowerCase().replace('$','')) > parseInt(y.innerHTML.toLowerCase().replace('$',''))) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (parseInt(x.innerHTML.toLowerCase().replace('$','')) < parseInt(y.innerHTML.toLowerCase().replace('$',''))) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+
+  $('table#teams tr:nth-child(1):has(td)')[0].children[0].innerHTML = 1;
+  for (var i = 2; i < $('table#teams tr').length-2; i++) {
+  	if($('table#teams tr:nth-child('+(i-1)+'):has(td)')[0].children[n].innerHTML == $('table#teams tr:nth-child('+i+'):has(td)')[0].children[n].innerHTML)
+  		$('table#teams tr:nth-child('+i+'):has(td)')[0].children[0].innerHTML = '';
+  	else
+  		$('table#teams tr:nth-child('+i+'):has(td)')[0].children[0].innerHTML = i;
+  }
 }

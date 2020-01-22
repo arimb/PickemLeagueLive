@@ -11,6 +11,7 @@
 	</script>
 
 	<title>FUN Pick'Em League</title>
+	<link rel="icon" href="fun_logo.png">
 	<script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 	<script type="text/javascript" src='update.js'></script>
 	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
@@ -74,10 +75,10 @@
 			<table id='draft' class='pure-table' align='center'>
 				<thead>
 					<tr align='center'>
-						<td>Rank</td>
-						<td style='width:25%;'>Team Name</td>
-						<td>Pick List</td>
-						<td>Score</td>
+						<th>Rank</th>
+						<th style='width:25%;'>Team Name</th>
+						<th>Pick List</th>
+						<th>Score</th>
 					</tr>
 				</thead>
 				<tbody style='word-break:break-word;'></tbody>
@@ -90,10 +91,10 @@
 			<table id='pickem' class='pure-table' align='center'>
 				<thead>
 					<tr align='center'>
-						<td>Rank</td>
-						<td style='width:25%;'>Team Name</td>
-						<td>Pick List</td>
-						<td>Score</td>
+						<th>Rank</th>
+						<th style='width:25%;'>Team Name</th>
+						<th>Pick List</th>
+						<th>Score</th>
 					</tr>
 				</thead>
 				<tbody style='word-break:break-word;'></tbody>
@@ -106,9 +107,11 @@
 			<table id='teams' class='pure-table' align='center'>
 				<thead>
 					<tr align='center'>
-						<td>Rank</td>
-						<td>Team #</td>
-						<td>Score</td>
+						<th>Rank</th>
+						<th onclick='sortTable(1)'>Team #</th>
+						<th onclick='sortTable(2)'>Score</th>
+						<th onclick='sortTable(3)'>Price</th>
+						<th onclick='sortTable(4)'>Points/$</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
