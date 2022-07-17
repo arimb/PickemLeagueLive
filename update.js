@@ -61,6 +61,7 @@ $(document).ready(function(){
 			pickem = [];
 			this.response.split('\n').slice(1).forEach(function(line){		//for each pickem team
 				if(line.trim()==='') return;
+				console.log(line);
 				var elements = line.split('\t');
 				var name = elements[3];		//default name is optional team name
 				if(name==='') name = elements[2];		//if no team name, use user first name
@@ -96,8 +97,14 @@ function update(){
 			if(!results[0][team]['qual']['ranking']['rank']){points[team] = 0; continue;}
 			var tmp = Math.ceil(7.676*erfinv((results[0][team]['qual']['num_teams']-2*results[0][team]['qual']['ranking']['rank']+2)/(1.07*results[0][team]['qual']['num_teams']))+12);		//assign each team qual scores
 			if(results[0][team]['alliance']){		//if team is selected, add their alliance selection scores
-				if(results[0][team]['alliance']['pick']<2) tmp += 17-results[0][team]['alliance']['number'];
-				else if(results[0][team]['alliance']['pick']==2) tmp += results[0][team]['alliance']['number'];
+				if($('select#event option:selected').val().split(',')[0].toLowerCase().includes("iri")) {
+					// IRI reverse draft
+					if(results[0][team]['alliance']['pick']<2) tmp += 17-results[0][team]['alliance']['number'];
+					else if(results[0][team]['alliance']['pick']==2) tmp += 9-results[0][team]['alliance']['number'];
+				} else {
+					if(results[0][team]['alliance']['pick']<2) tmp += 17-results[0][team]['alliance']['number'];
+					else if(results[0][team]['alliance']['pick']==2) tmp += results[0][team]['alliance']['number'];
+				}
 			}
 			points[team] = tmp;
 		}
